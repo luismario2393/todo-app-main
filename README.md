@@ -28,6 +28,18 @@ Your users should be able to:
 - Toggle light and dark mode
 - **Bonus**: Drag and drop to reorder items on the list
 
+Sus usuarios deberían poder:
+
+- Ver el diseño óptimo para la aplicación según el tamaño de la pantalla de su dispositivo
+- Ver estados de desplazamiento para todos los elementos interactivos en la página
+- Agregar nuevos todos a la lista
+- Marcar todos como completos
+- Eliminar todos de la lista
+- Filtrar por todos / activos / todos completos
+- Borrar todos los todos completados
+- Alternar modo claro y oscuro
+- ** Bonificación **: arrastre y suelte para reordenar los elementos de la lista
+
 Want some support on the challenge? [Join our Slack community](https://www.frontendmentor.io/slack) and ask questions in the **#help** channel.
 
 ## Where to find everything

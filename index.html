@@ -5,32 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
-  <title>Frontend Mentor | Todo app</title>
+  <link rel="stylesheet" href="./styles/normalize.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/styles.css">
+
+  <title>Todo app</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  
 </head>
 <body>
 
-  Todo
+  <header class="header">
+    <div class="container container-header">
+      <div class="logo">
+        <h1>TODO</h1>
+      </div>
+      <div class="icon-moon">
+        <img src="./images/icon-moon.svg" alt="icon moon">
+      </div>
+    </div>
+  </header>
 
-  <!-- Add dynamic number --> items left
+  <main>
+    <div class="input-principal container">
+      <div>
+        <img src="./images/icon-check.svg" alt="icon check">
+      </div>
+      <input type="text" name="" id="" placeholder="Crea un nuevo todo...">
+      <figure class="icon-x">
+        <img src="./images/icon-cross.svg"  alt="">
+      </figure>
+    </div>
 
-  All
-  Active 
-  Completed
+    <div class="contenedor-main container">
+      <div class="todo-ready">
+        <img src="./images/icon-check.svg" alt="icon check">
+      </div>
+      <p>Aquí van tus todos</p>
+      <figure class="icon-x">
+        <img src="./images/icon-cross.svg"  alt="">
+      </figure>
+    </div>
 
-  Clear Completed
+    <div class="contenedor-main-p container">
+      <p>No hay todos</p>
+    </div>
 
-  Drag and drop to reorder list
+    <div class="contenedor-main-cierre container">
+      <p><span>5</span> items left</p>
+      <a href="#">Clear Completed</a>
+    </div>
 
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
+    <div class="contenedor-main-filtro container">
+      <p>All</p>
+      <p>Active</p>
+      <p>Completed</p>
+    </div>
+
+  </main>
+
+ 
 </body>
 </html>
