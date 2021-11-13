@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -44,50 +44,34 @@
     </div>
 
     <div id="contenedor-main" class="contenedor-main container bg-light">
-      <div class="todo-ready">
-        <img src="./images/icon-check.svg" alt="icon check">
-      </div>
-      <p>Aquí van tus todos</p>
-      <figure class="icon-x">
-        <img src="./images/icon-cross.svg"  alt="cierre">
-      </figure>
+      <p>Aquí van tus pendientes...</p>
     </div>
 
     <div id="contenedor-main-p" class="contenedor-main-p container bg-light">
-      <p>No hay todos</p>
+      <p>No hay pendientes</p>
     </div>
 
     <!-- Codigo de TODOS -->
-    <section id="container-todo">
-
-      <!-- <div class="container contenedor-main-todo bg-light">
-        <div>
-          <img class="icon-check" src="./images/icon-check.svg" alt="icon check">
-        </div>
-        <p>Aquí van tus todos</p>
-        <figure class="icon-x">
-          <img src="./images/icon-cross.svg"  alt="cierre">
-        </figure> 
-      </div>  -->
-    </section>
+    <section id="container-todo"></section>
 
 
 
 
     <div id="contenedor-main-cierre" class="contenedor-main-cierre container bg-light">
-      <p><span>5</span> items left</p>
-      <a href="#">Clear Completed</a>
+      <p><span id="contador">0</span> Pendiente</p>
+      <a id="clear-completed" href="#">Eliminar Completados</a>
     </div>
 
     <div id="contenedor-main-filtro" class="contenedor-main-filtro container bg-light">
-      <p id="all" class="color-blue">All</p>
-      <p id="active">Active</p>
-      <p id="completed">Completed</p>
+      <p id="all" class="color-blue">Todos</p>
+      <p id="active">Activos</p>
+      <p id="completed">Completados</p>
     </div>
 
   </main>
-
-  <script src="./js/index.js"></script>
+  
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="./js/index.js"></script>
 
 
 

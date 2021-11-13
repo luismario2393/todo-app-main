@@ -1,0 +1,23 @@
+{
+  "name": "todo-app-main",
+  "version": "1.0.0",
+  "description": "![Design preview for the Todo app coding challenge](./design/desktop-preview.jpg)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luismario2393/todo-app-main.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luismario2393/todo-app-main/issues"
+  },
+  "homepage": "https://github.com/luismario2393/todo-app-main#readme",
+  "dependencies": {
+    "sweetalert2": "^11.1.10"
+  }
+}

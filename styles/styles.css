@@ -1,5 +1,5 @@
 :root {
-  --font: 'Josefin Sans', sans-serif;
+  --font: 'Josefin Sans', sans-serif; 
 
   /* Primary */
   --bright-blue: hsl(220, 98%, 61%);
@@ -71,7 +71,7 @@ body {
 
 
 main {
-  height: 70vh;
+  min-height: 100vh;
 }
 .background-light-menu {
   background: var(--very-light-grayish-blue);
@@ -104,6 +104,15 @@ main {
 }
 .icon-check {
   display: none;
+}
+.visible {
+  display: block !important;
+}
+.chequeado {
+  background: var(--check-background);
+}
+.texto-chequeado {
+  text-decoration: line-through;
 }
 .form {
   display: flex;
@@ -163,22 +172,14 @@ main {
   position: relative;
   bottom: 13rem;
 }
-.contenedor-main div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  border: 1px solid var(--light-grayish-blue);
-}
+
 .contenedor-main p{
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: line-through;
+  font-style: italic;
   margin: 0;
-  width: 75%;
+  width: 100%;
   font-size: 1.6rem;
   color: var(--dark-grayish-blue);
 }
@@ -206,6 +207,9 @@ main {
   height: 3rem;
   border-radius: 50%;
   border: 1px solid var(--light-grayish-blue);
+}
+.contenedor-main-todo div:hover {
+  cursor: pointer;
 }
 .contendor-main-todo p {
   display: flex;

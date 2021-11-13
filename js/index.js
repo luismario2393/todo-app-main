@@ -12,6 +12,8 @@ const all = document.querySelector('#all');
 const active = document.querySelector('#active');
 const completed = document.querySelector('#completed');
 const form = document.querySelector('#form');
+const clearCompleted = document.querySelector('#clear-completed');
+
 
 let todos = [];
 
@@ -30,12 +32,15 @@ document.addEventListener('DOMContentLoaded', () => {
   completed.addEventListener('click', () => {
     completed.classList.toggle('color-blue');
     all.classList.remove('color-blue');
-    active.classList.remove('color-blue');  
+    active.classList.remove('color-blue');
   });
 
   form.addEventListener('submit', agregarTodo);
- 
+
+
+
 });
+
 
 function agregarTodo(e) {
   e.preventDefault();
@@ -50,9 +55,16 @@ function agregarTodo(e) {
     contenedorMainP.classList.add('disabled');
     form.reset();
   }
-
-  console.log(todos);
+  Swal.fire({
+    position: 'center',
+    icon: 'success',
+    title: 'Agregaste un pendiente Exitosamente',
+    showConfirmButton: false,
+    timer: 1500
+  })
+  
   mostrarTodos(todos);
+
 }
 function mostrarTodos(todos) {
   const containerTodo = document.querySelector('#container-todo');
@@ -65,17 +77,29 @@ function mostrarTodos(todos) {
     const todoItem = document.createElement('div');
     todoItem.classList.add('container', 'contenedor-main-todo', 'bg-light');
     todoItem.innerHTML= `
-        <div>
-          <img class="icon-check" src="./images/icon-check.svg" alt="icon check">
-        </div>
-        <p>${text}</p>
-        <figure class="icon-x">
-          <img src="./images/icon-cross.svg"  alt="cierre">
-        </figure>
+    <div id="chequeado"  data-todo="${id}" class="check">
+      <img class="icon-check " src="./images/icon-check.svg" alt="icon check">
+    </div>
+    <p id="texto-chequeado"  class="texto-check">${text}</p>
+    <figure class="icon-x">
+      <img src="./images/icon-cross.svg"  alt="cierre">
+    </figure>
     `;
     containerTodo.appendChild(todoItem);
   })
+  contadorTodos();
 }
+
+
+function contadorTodos() {
+  const contador = document.querySelector('#contador');
+  if(todos.length === 0) {
+    contador.textContent = 0;
+  } else {
+    contador.textContent = todos.length;
+  }
+}
+
 
 function darkMode() {
   iconMoon.classList.add('disabled');
