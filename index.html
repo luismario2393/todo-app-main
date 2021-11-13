@@ -14,59 +14,82 @@
   <title>Todo app</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  
+
 </head>
 <body>
 
-  <header class="header">
+  <header id="header" class="header">
     <div class="container container-header">
       <div class="logo">
         <h1>TODO</h1>
       </div>
-      <div class="icon-moon">
+      <div class="icon-moon" id="icon-moon">
         <img src="./images/icon-moon.svg" alt="icon moon">
+      </div>
+      <div class="icon-sun disabled" id="icon-sun">
+        <img src="./images/icon-sun.svg" alt="icon sun">
       </div>
     </div>
   </header>
 
-  <main>
-    <div class="input-principal container">
+  <main id="main" class="background-light-menu">
+    <div id="input-principal" class="input-principal container bg-light">
       <div>
-        <img src="./images/icon-check.svg" alt="icon check">
+        <img class="icon-check" src="./images/icon-check.svg" alt="icon check">
       </div>
-      <input type="text" name="" id="" placeholder="Crea un nuevo todo...">
-      <figure class="icon-x">
-        <img src="./images/icon-cross.svg"  alt="">
-      </figure>
+      <form id="form" class="form" action="">
+        <input type="text" name="todo" id="todo-input" placeholder="Crea un nuevo todo...">
+        <input class="boton-agregar" type="submit" value="Agregar">
+      </form>
     </div>
 
-    <div class="contenedor-main container">
+    <div id="contenedor-main" class="contenedor-main container bg-light">
       <div class="todo-ready">
         <img src="./images/icon-check.svg" alt="icon check">
       </div>
       <p>Aquí van tus todos</p>
       <figure class="icon-x">
-        <img src="./images/icon-cross.svg"  alt="">
+        <img src="./images/icon-cross.svg"  alt="cierre">
       </figure>
     </div>
 
-    <div class="contenedor-main-p container">
+    <div id="contenedor-main-p" class="contenedor-main-p container bg-light">
       <p>No hay todos</p>
     </div>
 
-    <div class="contenedor-main-cierre container">
+    <!-- Codigo de TODOS -->
+    <section id="container-todo">
+
+      <!-- <div class="container contenedor-main-todo bg-light">
+        <div>
+          <img class="icon-check" src="./images/icon-check.svg" alt="icon check">
+        </div>
+        <p>Aquí van tus todos</p>
+        <figure class="icon-x">
+          <img src="./images/icon-cross.svg"  alt="cierre">
+        </figure> 
+      </div>  -->
+    </section>
+
+
+
+
+    <div id="contenedor-main-cierre" class="contenedor-main-cierre container bg-light">
       <p><span>5</span> items left</p>
       <a href="#">Clear Completed</a>
     </div>
 
-    <div class="contenedor-main-filtro container">
-      <p>All</p>
-      <p>Active</p>
-      <p>Completed</p>
+    <div id="contenedor-main-filtro" class="contenedor-main-filtro container bg-light">
+      <p id="all" class="color-blue">All</p>
+      <p id="active">Active</p>
+      <p id="completed">Completed</p>
     </div>
 
   </main>
 
- 
+  <script src="./js/index.js"></script>
+
+
+
 </body>
 </html>

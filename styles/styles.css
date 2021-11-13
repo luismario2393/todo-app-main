@@ -47,6 +47,16 @@ body {
   background-repeat: no-repeat;
   height: 300px;
 }
+.header-dark {
+  background-image: url('../images/bg-desktop-dark.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 300px;
+}
+.disabled{
+  display: none !important;
+}
 .container-header {
   display: flex;
   justify-content: space-between;
@@ -58,19 +68,30 @@ body {
   font-size: 3rem;
   color: var(--very-light-gray);
 }
+
+
 main {
+  height: 70vh;
+}
+.background-light-menu {
   background: var(--very-light-grayish-blue);
-  height: 55vh;
+}
+.background-dark-menu {
+  background: var(--very-dark-blue-dark);
 }
 .input-principal {
   display: flex;
-  justify-content: space-between;
   padding: 2rem;
   gap: 1rem;
   border-radius: 0.8rem;
-  background-color: var(--very-light-gray);
   position: relative;
   bottom: 13rem;
+}
+.bg-light {
+  background-color: var(--very-light-gray);
+}
+.bg-dark {
+  background: var(--very-dark-besaturated-blue-dark);
 }
 .input-principal div{
   display: flex;
@@ -81,8 +102,17 @@ main {
   border-radius: 50%;
   border: 1px solid var(--light-grayish-blue);
 }
+.icon-check {
+  display: none;
+}
+.form {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 3rem;
+}
 .input-principal input {
-  width: 75%;
+  width: 100%;
   font-size: 1.6rem;
   border: none;
   background: transparent;
@@ -90,6 +120,23 @@ main {
 }
 .input-principal input::placeholder {
   color: var(--dark-grayish-blue);
+  text-align: center;
+}
+
+.boton-agregar {
+  background: var(--bright-blue) !important;
+  border: none;
+  border-radius: 5px;
+  width: 8rem !important;
+  text-align: center;
+  color: white;
+  padding: 1rem;
+  font-size: 1.6rem;
+}
+.boton-agregar:hover{
+  cursor: pointer;
+  background: #083693 !important;
+  transition: 0.3s ease;
 }
 .todo-ready {
   background: var(--check-background);
@@ -110,7 +157,6 @@ main {
   padding: 2rem;
   gap: 1rem;
   border-radius: 0.8rem 0.8rem 0 0;;
-  background-color: var(--very-light-gray);
   border-bottom: 1px solid var(--light-grayish-blue);
   margin-top: 3rem;
   height: 70px;
@@ -140,12 +186,43 @@ main {
   width: 2rem;
   height: 2rem;
 }
+.contenedor-main-todo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  gap: 1rem;
+  border-bottom: 1px solid var(--light-grayish-blue);
+  height: 70px;
+  position: relative;
+  bottom: 13rem;
+  color: var(--dark-grayish-blue);
+}
+.contenedor-main-todo div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 1px solid var(--light-grayish-blue);
+}
+.contendor-main-todo p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: line-through;
+  margin: 0;
+  width: 75%;
+  font-size: 1.6rem;
+  color: var(--dark-grayish-blue);
+}
+
 
 .contenedor-main-p {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--very-light-gray);
   height: 70px;
   border-bottom: 1px solid var(--light-grayish-blue);
   font-style: italic;
@@ -159,7 +236,6 @@ main {
   height: 70px;
   padding: 2rem;
   border-radius: 0 0 0.8rem 0.8rem;
-  background-color: var(--very-light-gray);
   color: var(--dark-grayish-blue);
   position: relative;
   bottom: 13rem;
@@ -169,7 +245,7 @@ main {
   color: var(--dark-grayish-blue);
 }
 .contenedor-main-cierre a:hover {
-  text-decoration: underline;
+  color: var(--very-darky-grayish-blue-dark);
 }
 .contenedor-main-filtro {
   display: flex;
@@ -178,13 +254,16 @@ main {
   height: 70px;
   padding: 2rem;
   border-radius:0.8rem;
-  background-color: var(--very-light-gray);
   color: var(--dark-grayish-blue);
   position: relative;
   bottom: 13rem;
   margin-top: 3rem;
+  font-weight: bold;
 }
 .contenedor-main-filtro p:hover {
-  color: var(--bright-blue);
+  color: var(--very-darky-grayish-blue-dark);
   cursor: pointer;
+}
+.color-blue {
+  color: var(--bright-blue);
 }
