@@ -22,6 +22,12 @@ let todos = [];
 document.addEventListener('DOMContentLoaded', () => {
   // local storage
   todos = JSON.parse(localStorage.getItem('todos')) || [];
+  mostrarTodos(todos);
+  if(todos.length !== 0) {
+    contenedorMainP.classList.add('disabled');
+  } else {
+    contenedorMainP.classList.remove('disabled');
+  }
 
   // modo oscuro
   iconMoon.addEventListener('click', darkMode);
@@ -96,6 +102,7 @@ function agregarTodo(e) {
     text: document.querySelector('#form #todo-input').value,
     completed: false
   }
+  // validación y quitar mensaje de no hay
   if(todoInput.text.length === 0) {
     
     Swal.fire({
