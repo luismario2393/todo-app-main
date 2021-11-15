@@ -13,90 +13,217 @@ const active = document.querySelector('#active');
 const completed = document.querySelector('#completed');
 const form = document.querySelector('#form');
 const clearCompleted = document.querySelector('#clear-completed');
+const containerTodo = document.querySelector('#container-todo');
+
 
 
 let todos = [];
 
 document.addEventListener('DOMContentLoaded', () => {
+  
   iconMoon.addEventListener('click', darkMode);
   iconSun.addEventListener('click', lightMode);
   all.addEventListener('click', () => {
     all.classList.add('color-blue');
     active.classList.remove('color-blue');
     completed.classList.remove('color-blue');
+    todosPendiente();
   });
   active.addEventListener('click', () => {
     active.classList.toggle('color-blue');
     colorBlue();
+    activos();
   });
   completed.addEventListener('click', () => {
     completed.classList.toggle('color-blue');
     all.classList.remove('color-blue');
     active.classList.remove('color-blue');
+    completados();
   });
 
   form.addEventListener('submit', agregarTodo);
+  containerTodo.addEventListener('click', marcarCompletado);
+  containerTodo.addEventListener('click', eliminarTodos);
+
+  clearCompleted.addEventListener('click', clearCompletedTodos);
 
 
 
 });
 
+function todosPendiente() {
+  mostrarTodos(todos);
+  contadorTodos(todos);
+}
+
+function activos() {
+  let todosActivos = todos.filter(todo => {
+    return todo.completed === false;
+  })
+  mostrarTodos(todosActivos);
+  contadorTodos(todosActivos);
+}
+
+function completados() {
+  let todosCompletados = todos.filter(todo => {
+    return todo.completed === true;
+  })
+  mostrarTodos(todosCompletados);
+  contadorTodos(todosCompletados);
+}
 
 function agregarTodo(e) {
   e.preventDefault();
   const todoInput = {
     id: Date.now(),
     text: document.querySelector('#form #todo-input').value,
+    completed: false
   }
-  if(todoInput.text === '') {
-    alert('Ingresa una tarea');
+  if(todoInput.text.length === 0) {
+    
+    Swal.fire({
+      icon: 'error',
+      title: 'Opps...',
+      text: 'Debes agregar una tarea',
+    })
   } else {
     todos.push(todoInput);
     contenedorMainP.classList.add('disabled');
     form.reset();
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Agregaste un pendiente Exitosamente',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
-  Swal.fire({
-    position: 'center',
-    icon: 'success',
-    title: 'Agregaste un pendiente Exitosamente',
-    showConfirmButton: false,
-    timer: 1500
-  })
   
   mostrarTodos(todos);
 
 }
-function mostrarTodos(todos) {
+
+function mostrarTodos(todos){
   const containerTodo = document.querySelector('#container-todo');
   while(containerTodo.firstChild) {
     containerTodo.removeChild(containerTodo.firstChild);
   }
-
   todos.forEach(todo => {
     const { id, text } = todo;
     const todoItem = document.createElement('div');
     todoItem.classList.add('container', 'contenedor-main-todo', 'bg-light');
+
+    if(inputPrincipal.classList.contains('bg-dark')) {
+      todoItem.classList.remove('bg-dark');
+      todoItem.classList.add('bg-dark');
+    } else {
+      todoItem.classList.add('bg-light');
+    }
+    
+    
     todoItem.innerHTML= `
-    <div id="chequeado"  data-todo="${id}" class="check">
-      <img class="icon-check " src="./images/icon-check.svg" alt="icon check">
+    <div class="check" data-id="${id}">
+      <img class="icon-check" src="./images/icon-check.svg" alt="icon check">
     </div>
-    <p id="texto-chequeado"  class="texto-check">${text}</p>
+    <p class="texto-check">${text}</p>
     <figure class="icon-x">
-      <img src="./images/icon-cross.svg"  alt="cierre">
+      <img class="eliminar" src="./images/icon-cross.svg" data-id="${id}" alt="cierre">
     </figure>
     `;
     containerTodo.appendChild(todoItem);
   })
-  contadorTodos();
+  contadorTodos(todos);
+  
+}
+
+function marcarCompletado(e) {
+  if(e.target.classList.contains('check')) {
+    e.target.classList.toggle('chequeado');
+  }
+  
+  if(e.target.classList.contains('chequeado')) {
+    const id = parseInt(e.target.dataset.id);
+    todos = todos.map(todo => {
+      if(todo.id === id) {
+        todo.completed = true;
+      }
+      return todo;
+    });
+  } else {
+    const id = parseInt(e.target.dataset.id);
+    todos = todos.map(todo => {
+      if(todo.id === id) {
+        todo.completed = false;
+      }
+      return todo;
+    });
+  }
+}
+
+function clearCompletedTodos(e) {
+  e.preventDefault();
+  if(containerTodo.childElementCount !== 0) {
+    if(containerTodo.children[0].children[0].classList.contains('chequeado')) {
+      Swal.fire({
+        title: '¿Estás seguro que quieres eliminar los pendientes completados?',
+        text: "No podras recuperar los pendientes",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          todos = todos.filter(todo => !todo.completed);
+          mostrarTodos(todos);
+          Swal.fire(
+            'Eliminado',
+            'El pendiente se ha eliminado correctamente',
+            'success'
+          )
+        }
+      })
+    }
+  }
 }
 
 
-function contadorTodos() {
+function eliminarTodos(e) {
+  if(e.target.classList.contains('eliminar')) {
+    
+    Swal.fire({
+      title: '¿Estás seguro que quieres eliminar el pendiente?',
+      text: "No podras recuperar el pendiente",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const id = parseInt(e.target.dataset.id);
+        todos = todos.filter(todo => todo.id !== id);
+        mostrarTodos(todos);
+        Swal.fire(
+          'Eliminado',
+          'El pendiente se ha eliminado correctamente',
+          'success'
+        )
+      }
+    })
+  }
+}
+
+
+function contadorTodos(todo) {
   const contador = document.querySelector('#contador');
-  if(todos.length === 0) {
+  
+   if(todo.length === 0) {
     contador.textContent = 0;
   } else {
-    contador.textContent = todos.length;
+    contador.textContent = todo.length;
   }
 }
 
@@ -119,6 +246,8 @@ function darkMode() {
   contenedorMainCierre.classList.add('bg-dark');
   contenedorMainFiltro.classList.remove('bg-light');
   contenedorMainFiltro.classList.add('bg-dark');
+  
+  
 }
 function lightMode() {
   iconMoon.classList.remove('disabled');
@@ -138,6 +267,7 @@ function lightMode() {
   contenedorMainCierre.classList.add('bg-light');
   contenedorMainFiltro.classList.remove('bg-dark');
   contenedorMainFiltro.classList.add('bg-light');
+
 }
 function colorBlue() {
   if(active.classList.contains('color-blue')) {

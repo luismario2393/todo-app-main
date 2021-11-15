@@ -88,10 +88,10 @@ main {
   bottom: 13rem;
 }
 .bg-light {
-  background-color: var(--very-light-gray);
+  background-color: var(--very-light-gray) !important;
 }
 .bg-dark {
-  background: var(--very-dark-besaturated-blue-dark);
+  background: var(--very-dark-besaturated-blue-dark) !important;
 }
 .input-principal div{
   display: flex;
@@ -110,6 +110,12 @@ main {
 }
 .chequeado {
   background: var(--check-background);
+}
+.chequeado img {
+  display: block !important;
+}
+.chequeado ~ p {
+  text-decoration: line-through
 }
 .texto-chequeado {
   text-decoration: line-through;
@@ -155,10 +161,14 @@ main {
   align-items: center;
   margin: 0;
 }
+.icon-x:hover {
+  cursor: pointer;
+}
 .input-principal .icon-x img {
   width: 2rem;
   height: 2rem;
   text-align: center;
+
 }
 .contenedor-main {
   display: flex;
