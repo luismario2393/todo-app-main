@@ -163,7 +163,7 @@ function marcarCompletado(e) {
 function clearCompletedTodos(e) {
   e.preventDefault();
   if(containerTodo.childElementCount !== 0) {
-    if(containerTodo.children[0].children[0].classList.contains('chequeado')) {
+    
       Swal.fire({
         title: '¿Estás seguro que quieres eliminar los pendientes completados?',
         text: "No podras recuperar los pendientes",
@@ -185,7 +185,7 @@ function clearCompletedTodos(e) {
         }
       })
     }
-  }
+  
 }
 
 
