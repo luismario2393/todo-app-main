@@ -16,24 +16,34 @@ const clearCompleted = document.querySelector('#clear-completed');
 const containerTodo = document.querySelector('#container-todo');
 
 
-
+// arreglo de todos
 let todos = [];
 
 document.addEventListener('DOMContentLoaded', () => {
-  
+  // local storage
+  todos = JSON.parse(localStorage.getItem('todos')) || [];
+
+  // modo oscuro
   iconMoon.addEventListener('click', darkMode);
+  // modo claro
   iconSun.addEventListener('click', lightMode);
+
+  // filtro todos los pendientes
   all.addEventListener('click', () => {
     all.classList.add('color-blue');
     active.classList.remove('color-blue');
     completed.classList.remove('color-blue');
     todosPendiente();
   });
+
+  // filtro pendientes activos
   active.addEventListener('click', () => {
     active.classList.toggle('color-blue');
     colorBlue();
     activos();
   });
+
+  // filtro pendientes completados
   completed.addEventListener('click', () => {
     completed.classList.toggle('color-blue');
     all.classList.remove('color-blue');
@@ -41,15 +51,22 @@ document.addEventListener('DOMContentLoaded', () => {
     completados();
   });
 
+  // agregar todo
   form.addEventListener('submit', agregarTodo);
+
+  // marcar como completado
   containerTodo.addEventListener('click', marcarCompletado);
+
+  // eliminar todo
   containerTodo.addEventListener('click', eliminarTodos);
 
+  // eliminar todo completado
   clearCompleted.addEventListener('click', clearCompletedTodos);
 
 
 
 });
+
 
 function todosPendiente() {
   mostrarTodos(todos);
@@ -89,7 +106,6 @@ function agregarTodo(e) {
   } else {
     todos.push(todoInput);
     contenedorMainP.classList.add('disabled');
-    form.reset();
     Swal.fire({
       position: 'center',
       icon: 'success',
@@ -97,6 +113,8 @@ function agregarTodo(e) {
       showConfirmButton: false,
       timer: 1500
     })
+    
+    form.reset();
   }
   
   mostrarTodos(todos);
@@ -108,8 +126,9 @@ function mostrarTodos(todos){
   while(containerTodo.firstChild) {
     containerTodo.removeChild(containerTodo.firstChild);
   }
+  
   todos.forEach(todo => {
-    const { id, text } = todo;
+    const { id, text, completed } = todo;
     const todoItem = document.createElement('div');
     todoItem.classList.add('container', 'contenedor-main-todo', 'bg-light');
 
@@ -131,32 +150,40 @@ function mostrarTodos(todos){
     </figure>
     `;
     containerTodo.appendChild(todoItem);
+    if(completed) {
+      todoItem.children[0].classList.add('chequeado');
+    }
   })
   contadorTodos(todos);
+
+  sincronizarStorage();
   
+}
+
+function sincronizarStorage() {
+  localStorage.setItem('todos', JSON.stringify(todos));
 }
 
 function marcarCompletado(e) {
   if(e.target.classList.contains('check')) {
     e.target.classList.toggle('chequeado');
-  }
-  
-  if(e.target.classList.contains('chequeado')) {
-    const id = parseInt(e.target.dataset.id);
-    todos = todos.map(todo => {
-      if(todo.id === id) {
-        todo.completed = true;
-      }
-      return todo;
-    });
-  } else {
-    const id = parseInt(e.target.dataset.id);
-    todos = todos.map(todo => {
-      if(todo.id === id) {
-        todo.completed = false;
-      }
-      return todo;
-    });
+    if(e.target.classList.contains('chequeado')) {
+      const id = parseInt(e.target.dataset.id);
+      todos = todos.map(todo => {
+        if(todo.id === id) {
+          todo.completed = true;
+        }
+        return todo;
+      });
+    } else {
+      const id = parseInt(e.target.dataset.id);
+      todos = todos.map(todo => {
+        if(todo.id === id) {
+          todo.completed = false;
+        }
+        return todo;
+      });
+    }
   }
 }
 
